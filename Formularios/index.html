@@ -1,0 +1,43 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<head>
+	<title>Formularios</title>
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+		<script src="formulario.js"></script>	
+</head>
+<body ng-app>
+	
+<div class="container">
+<h1>Formulario Angular</h1>
+	<hr>
+
+	<form role="form" name="formulario1">
+	<div class="form-group" ng-class="{'has-error': formulario1.nombreU.$invalid, 'has-success': formulario1.nombreU.$valid}">
+	<!--Esta validacion pone el campo en rojo sino se diligencia y en verde cuando ya se esta poniendo -->
+		<label for="inputNombre">Nombre</label>
+		<input id="inputNombre" type="text" class="form-control" placeholder="Nombre" name="nombreU" ng-model="usuario.nombre" required>
+	</div>
+	<div class="form-group" ng-class="{'has-error': formulario1.emailU.$invalid, 'has-success': formulario1.emailU.$valid}">
+		<label for="inputEmail">Email</label>
+		<input id="inputEmail" type="email" class="form-control" placeholder="email" name="emailU" ng-model="usuario.email" required>
+		<div ng-show="formulario1.emailU.$dirty && formulario1.emailU.$invalid"> <!-- Mientras este campo no se diligencie se ocultaran los otros campos -->
+			<p class="help-block text-danger" ng-show="formulario1.emailU.$error.required">Campo Obligatorio</p>
+			<p class="help-block text-danger" ng-show="formulario1.emailU.$error.email">Email Invalido</p>
+		</div>
+	</div>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="aceptoU" ng-model="usuario.acepto" required>Acepto
+			</label>
+				</div>
+				<button class="btn btn-success" ng-disabled="formulario1.$invalid">Registrar</button>
+	
+	
+	</form>
+	<hr>
+	<span class="lead text-primary"></span>
+</div>
+
+</body>
